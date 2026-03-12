@@ -1,0 +1,9 @@
+# Packetally Affiliate Links
+# Format: REGISTRAR_NAME=URL_TEMPLATE
+# Use {domain} as placeholder — it will be replaced at runtime
+
+DYNADOT=https://www.dynadot.com/domain/search?domain={domain}&ref=AFFILIATEID
+NAMECHEAP=https://namecheap.pxf.io/c/AFFILIATEID/lookup?domain={domain}
+SPACESHIP=https://spaceship.domains/register?domain={domain}&ref=AFFILIATEID
+GODADDY=https://www.godaddy.com/domainsearch/find?checkAvail=1&tmskey=&domainToCheck={domain}&ref=packetally
+PORKBUN=https://porkbun.com/checkout/search?q={domain}

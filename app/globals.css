@@ -1,0 +1,233 @@
+/* Fonts loaded via next/font in layout.tsx — no @import needed */
+
+:root {
+  --brand:       #1800E0;
+  --brand-lt:    #2B14FF;
+  --brand-dim:   rgba(24,0,224,0.12);
+  --bg:          #030508;
+  --bg-alt:      #060810;
+  --surface:     #080B18;
+  --card:        #0B0E1E;
+  --card2:       #0F1226;
+  --border:      #151929;
+  --border2:     #1E2440;
+  --accent:      #4D6FFF;
+  --cyan:        #00D4FF;
+  --cyan-dim:    #0099CC;
+  --gold:        #F5A623;
+  --green:       #00E676;
+  --red:         #FF3D5A;
+  --purple:      #9D6EFF;
+  --orange:      #FF7A2F;
+  --text:        #D8E0F3;
+  --dim:         #6070A0;
+  --muted:       #2A3055;
+  --font-display: var(--font-syne),    'Syne',              sans-serif;
+  --font-mono:    var(--font-dm-mono), 'DM Mono',           monospace;
+  --font-body:    var(--font-jakarta), 'Plus Jakarta Sans',  sans-serif;
+  --radius-sm: 6px;
+  --radius:    10px;
+  --radius-lg: 14px;
+}
+
+/* ── Reset ────────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+/* ── Focus ────────────────────────────────────────────────────────────────── */
+:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; border-radius: var(--radius-sm); }
+:focus:not(:focus-visible) { outline: none; }
+
+/* ── Scrollbar ────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+* { scrollbar-width: thin; scrollbar-color: var(--border2) var(--bg); }
+
+::selection { background: var(--brand); color: #fff; }
+a { color: inherit; text-decoration: none; }
+a:focus-visible { outline: 2px solid var(--cyan); border-radius: 4px; }
+input, button, select { font-family: inherit; }
+input::placeholder { color: var(--muted); }
+img { display: block; max-width: 100%; }
+button { cursor: pointer; border: none; background: transparent; }
+dl, dt, dd { margin: 0; }
+
+/* ── Keyframes ────────────────────────────────────────────────────────────── */
+@keyframes pk-spin    { to { transform: rotate(360deg); } }
+@keyframes pk-shimmer { 0%   { background-position: -600px 0; } 100% { background-position: 600px 0; } }
+@keyframes pk-in      { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes pk-fade    { from { opacity: 0; } to { opacity: 1; } }
+@keyframes pk-slide   { from { opacity: 0; transform: translateX(-8px); } to { opacity: 1; transform: translateX(0); } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+.pk-in    { animation: pk-in   0.35s ease both; }
+.pk-fade  { animation: pk-fade 0.25s ease both; }
+.pk-slide { animation: pk-slide 0.3s ease both; }
+
+/* ── Layout ───────────────────────────────────────────────────────────────── */
+.pk-container { max-width: 1100px; margin: 0 auto; padding: 28px 20px 64px; }
+
+/* ── Skeleton ─────────────────────────────────────────────────────────────── */
+.pk-skeleton {
+  border-radius: var(--radius);
+  background: linear-gradient(90deg, var(--card) 25%, var(--card2) 50%, var(--card) 75%);
+  background-size: 600px 100%;
+  animation: pk-shimmer 1.4s ease-in-out infinite;
+}
+
+/* ── Responsive grid ──────────────────────────────────────────────────────── */
+/* FIX I10: CSS class prevents inline style override */
+.pk-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+/* ── Nav link ─────────────────────────────────────────────────────────────── */
+.pk-nav-link {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--dim);
+  padding: 5px 13px;
+  border-radius: var(--radius-sm);
+  border: none;
+  background: transparent;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, background 0.2s;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+.pk-nav-link:hover { color: var(--cyan); }
+.pk-nav-link[aria-current="page"] {
+  color: var(--cyan);
+  background: rgba(0,212,255,0.08);
+  border-bottom-color: var(--cyan);
+}
+
+/* ── Affiliate buttons ────────────────────────────────────────────────────── */
+.aff-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 12px;
+  padding: 9px 16px;
+  border-radius: var(--radius);
+  border: none;
+  text-decoration: none;
+  transition: opacity 0.15s, transform 0.15s;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.aff-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+.aff-btn-primary  { background: linear-gradient(135deg, var(--brand), var(--brand-lt)); color: #fff; }
+.aff-btn-secondary { background: var(--card2); border: 1px solid var(--border2); color: var(--text); }
+
+/* ── Table ────────────────────────────────────────────────────────────────── */
+.pk-table { width: 100%; border-collapse: collapse; }
+.pk-table th {
+  padding: 9px 16px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--dim);
+  letter-spacing: 0.09em;
+  text-align: left;
+  font-weight: 400;
+  border-bottom: 1px solid var(--border);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.pk-table td {
+  padding: 11px 16px;
+  border-bottom: 1px solid rgba(21,25,41,0.5);
+  vertical-align: middle;
+}
+.pk-table tbody tr { transition: background 0.15s; }
+.pk-table tbody tr:hover { background: var(--card2); }
+
+/* ── Status chips ─────────────────────────────────────────────────────────── */
+.status-available { background: rgba(0,230,118,0.1);  color: var(--green);  border: 1px solid rgba(0,230,118,0.3); }
+.status-taken     { background: rgba(255,61,90,0.09); color: var(--red);    border: 1px solid rgba(255,61,90,0.25); }
+.status-unknown   { background: rgba(96,112,160,0.1); color: var(--dim);    border: 1px solid rgba(96,112,160,0.2); }
+
+/* ── Utility ──────────────────────────────────────────────────────────────── */
+.mono  { font-family: var(--font-mono); }
+.syne  { font-family: var(--font-display); }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0;
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
+@media (max-width: 720px) {
+  .pk-grid-2            { grid-template-columns: 1fr; }
+  .pk-stats-4           { grid-template-columns: 1fr 1fr !important; }
+  .pk-container         { padding: 18px 16px 48px; }
+  .hide-mobile          { display: none !important; }
+  .pk-table-scroll      { overflow-x: auto; }
+}
+
+/* ── Card component classes (used by [slug]/page.tsx and BrandPage) ─────── */
+.pk-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+}
+.pk-card-hover { transition: border-color 0.2s, transform 0.2s; }
+.pk-card-hover:hover { border-color: var(--border2); transform: translateY(-2px); }
+
+/* Section header inside cards */
+.pk-sh {
+  padding: 13px 18px 12px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10;
+}
+.pk-sh-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--text);
+}
+.pk-sh-sub {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--dim);
+  margin-top: 3px;
+  letter-spacing: 0.06em;
+}
+
+/* Status chips */
+.pk-chip {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  padding: 3px 9px;
+  border-radius: 5px;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Score animation */
+.pk-score-bar { transition: width 0.9s ease; }
