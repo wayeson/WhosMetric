@@ -6,14 +6,14 @@ import type { DroppingDomain } from "@/lib/types";
 import AffiliateButtons from "@/components/AffiliateButtons";
 import SearchBar from "@/components/SearchBar";
 
-const BASE = process.env.NEXT_PUBLIC_APP_URL || "https://packetally.com";
+const BASE = process.env.NEXT_PUBLIC_APP_URL || "https://whosmetric.com";
 
 export const metadata: Metadata = {
   title: "Dropping Today — Expiring Domains",
   description: "Browse expiring and dropping domains today. Find undervalued domain opportunities before they're gone.",
   alternates: { canonical: `${BASE}/dropping-today` },
   openGraph: {
-    title: "Dropping Today — Expiring Domains | Packetally",
+    title: "Dropping Today — Expiring Domains | WhosMetric",
     description: "Find valuable expiring domains before they drop.",
     url: `${BASE}/dropping-today`,
   },

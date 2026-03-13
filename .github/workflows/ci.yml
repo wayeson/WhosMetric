@@ -48,7 +48,7 @@ jobs:
     env:
       # Dummy values so Next.js can build without real keys
       ANTHROPIC_API_KEY: sk-ant-dummy-key-for-build
-      NEXT_PUBLIC_APP_URL: https://packetally.com
+      NEXT_PUBLIC_APP_URL: https://whosmetric.com
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -74,4 +74,4 @@ jobs:
   #     - uses: bervProject/railway-deploy@v1.2.0
   #       with:
   #         railway_token: ${{ secrets.RAILWAY_TOKEN }}
-  #         service: packetally
+  #         service: whosmetric

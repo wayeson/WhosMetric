@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 
-const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://packetally.com";
+const BASE_URL = process.env.NEXT_PUBLIC_APP_URL || "https://whosmetric.com";
 
 const CSP = [
   "default-src 'self'",
@@ -9,6 +9,8 @@ const CSP = [
   "font-src 'self' https://fonts.gstatic.com data:",
   "img-src 'self' data: blob:",
   "connect-src 'self' https://api.anthropic.com https://rdap.org https://rdap.cloudflare.com https://*.upstash.io",
+  "worker-src 'none'",
+  "object-src 'none'",
   "frame-ancestors 'none'",
   "base-uri 'self'",
   "form-action 'self'",

@@ -15,8 +15,27 @@ import CopyButton       from "@/components/CopyButton";
 import { LogoMark }     from "@/components/Logo";
 import { DomainPageSkeleton } from "@/components/Skeleton";
 import { ScoreRing, ScoreBar } from "@/components/ui/ScoreRing";
+import WatchButton      from "@/components/WatchButton";
 
-const BASE = process.env.NEXT_PUBLIC_APP_URL || "https://packetally.com";
+// ─── Static Pre-rendering ─────────────────────────────────────────────────────
+// Pre-renders the 40 most-searched domains at build time (ISR fills in the rest)
+
+const POPULAR_PRERENDER = [
+  "stripe.com","openai.com","vercel.com","linear.app","notion.so",
+  "figma.com","supabase.com","relay.io","signal.ai","anthropic.com",
+  "github.com","cloudflare.com","shopify.com","twilio.com","sendgrid.com",
+  "postmark.com","resend.com","planetscale.com","railway.app","render.com",
+  "netlify.com","heroku.com","digitalocean.com","fly.io","turso.io",
+  "neon.tech","convex.dev","liveblocks.io","pusher.com","ably.com",
+  "algolia.com","typesense.io","meilisearch.com","pinecone.io","weaviate.io",
+  "stripe.ai","relay.ai","signal.com","notion.ai","linear.dev",
+];
+
+export async function generateStaticParams() {
+  return POPULAR_PRERENDER.map(slug => ({ slug }));
+}
+
+const BASE = process.env.NEXT_PUBLIC_APP_URL || "https://whosmetric.com";
 
 // ─── Metadata ─────────────────────────────────────────────────────────────────
 
@@ -29,9 +48,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   if (type === "domain") {
     return {
       title: `Who Owns ${value}?`,
-      description: `Discover who owns ${value}, its registrar, registration dates, nameservers, and related domains. Free domain intelligence by Packetally.`,
+      description: `Discover who owns ${value}, its registrar, registration dates, nameservers, and related domains. Free domain intelligence by WhosMetric.`,
       openGraph: {
-        title: `Who Owns ${value}? | Packetally`,
+        title: `Who Owns ${value}? | WhosMetric`,
         description: `Domain intelligence for ${value}`,
         url: `${BASE}/${value}`,
       },
@@ -43,7 +62,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     title: `${value} Domain Portfolio`,
     description: `Explore domain portfolio and intelligence for ${value}. Find owned and available domain variations.`,
     openGraph: {
-      title: `${value} Domain Portfolio | Packetally`,
+      title: `${value} Domain Portfolio | WhosMetric`,
       url: `${BASE}/${value}`,
     },
     alternates: { canonical: `${BASE}/${value}` },
@@ -54,9 +73,11 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
 export default function SlugPage({ params }: { params: { slug: string } }) {
   const classified = classifySlug(decodeURIComponent(params.slug));
-  if (!classified) notFound();
+  if (!classified) {
+    notFound();
+  }
 
-  const { type, value } = classified;
+  const { type, value } = classified as NonNullable<typeof classified>;
 
   if (type === "domain") {
     return (
@@ -141,13 +162,13 @@ async function DomainPageServer({ domain }: { domain: string }) {
                   <CopyButton value={domain} label="domain name" />
                 </h1>
                 <div style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--dim)", marginTop: 3 }}>
-                  Domain Intelligence Report · Packetally
+                  Domain Intelligence Report · WhosMetric
                 </div>
               </div>
             </div>
 
             {/* Status chips */}
-            <div style={{ display: "flex", gap: 7, flexWrap: "wrap", marginTop: 8 }}>
+            <div style={{ display: "flex", gap: 7, flexWrap: "wrap", marginTop: 8, alignItems: "center" }}>
               <span
                 className={`pk-chip ${isAvailable ? "status-available" : isRegistered ? "status-taken" : "status-unknown"}`}
                 role="status"
@@ -155,6 +176,7 @@ async function DomainPageServer({ domain }: { domain: string }) {
               >
                 {isAvailable ? "✓ Available" : isRegistered ? "✗ Registered" : "⚠ Unknown"}
               </span>
+              <WatchButton domain={domain} />
               {isRegistered && age && (
                 <span className="pk-chip" style={{ background: "rgba(91,117,255,0.12)", color: "var(--accent)" }}>{age} old</span>
               )}

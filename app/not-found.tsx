@@ -3,7 +3,7 @@ import SearchBar from "@/components/SearchBar";
 import { LogoMark } from "@/components/Logo";
 
 export const metadata = {
-  title: "Not Found | Packetally",
+  title: "Not Found | WhosMetric",
   description: "The page you're looking for doesn't exist.",
 };
 

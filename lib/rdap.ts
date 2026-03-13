@@ -4,6 +4,8 @@ import type { RDAPResult, TLDResult } from "./types";
 const RDAP_BASE = "https://rdap.org/domain/";
 const TLDS      = [".com",".io",".ai",".co",".app",".dev",".xyz",".net",".gg",".org",".tech",".finance"] as const;
 
+type NextFetchInit = RequestInit & { next?: { revalidate?: number } };
+
 // ─── Domain lookup ────────────────────────────────────────────────────────────
 
 export async function lookupDomain(domain: string): Promise<RDAPResult> {
@@ -16,7 +18,7 @@ export async function lookupDomain(domain: string): Promise<RDAPResult> {
   try {
     const res = await fetch(
       `${RDAP_BASE}${encodeURIComponent(domain.toLowerCase())}`,
-      { signal: AbortSignal.timeout(6000), next: { revalidate: 3600 } }
+      { signal: AbortSignal.timeout(6000), next: { revalidate: 3600 } } as NextFetchInit
     );
 
     if (res.status === 404) {
@@ -94,7 +96,7 @@ export async function checkTLDAvailability(sld: string): Promise<TLDResult[]> {
         const r = await fetch(`${RDAP_BASE}${domain}`, {
           signal: AbortSignal.timeout(4500),
           next: { revalidate: 3600 },
-        });
+        } as NextFetchInit);
         const available = r.status === 404;
         await cacheSet(key, { found: !available, available, domain } as RDAPResult);
         return { tld, domain, available };

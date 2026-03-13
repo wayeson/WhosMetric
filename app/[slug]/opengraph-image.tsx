@@ -3,7 +3,7 @@ import { classifySlug } from "@/lib/validate";
 
 export const runtime = "edge";
 export const size    = { width: 1200, height: 630 };
-export const alt     = "Packetally Domain Intelligence";
+export const alt     = "WhosMetric Domain Intelligence";
 
 export default function OGImage({ params }: { params: { slug: string } }) {
   const classified = classifySlug(decodeURIComponent(params.slug));
@@ -64,7 +64,7 @@ export default function OGImage({ params }: { params: { slug: string } }) {
 
         {/* Footer */}
         <div style={{ display: "flex", justifyContent: "space-between", width: "100%", alignItems: "flex-end" }}>
-          <span style={{ fontSize: 14, color: "#353D60", fontFamily: "monospace" }}>packetally.com</span>
+          <span style={{ fontSize: 14, color: "#353D60", fontFamily: "monospace" }}>whosmetric.com</span>
           <span style={{ fontSize: 12, color: "#353D60", fontFamily: "monospace" }}>RDAP · Claude AI · Affiliate-Ready</span>
         </div>
       </div>

@@ -14,7 +14,7 @@ export function LogoMark({ size = 28, ...props }: LogoProps) {
       role="img"
       {...props}
     >
-      {!props["aria-hidden"] && <title>Packetally</title>}
+      {!props["aria-hidden"] && <title>WhosMetric</title>}
       <rect width="100" height="100" rx="18" fill="#1800E0" />
       {/* 4-pointed star sparkle mark */}
       <path

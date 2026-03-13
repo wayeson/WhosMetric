@@ -9,10 +9,10 @@ import DomainNews from "@/app/sections/DomainNews";
 import TrendingTLDs from "@/app/sections/TrendingTLDs";
 import { ErrorState } from "@/components/ui/Card";
 
-const BASE = process.env.NEXT_PUBLIC_APP_URL || "https://packetally.com";
+const BASE = process.env.NEXT_PUBLIC_APP_URL || "https://whosmetric.com";
 
 export const metadata: Metadata = {
-  title: "Packetally — Domain Intelligence Platform",
+  title: "WhosMetric — Domain Intelligence Platform",
   description:
     "Discover who owns any domain, check availability, explore domain portfolios, and find expiring domains. Free, instant domain intelligence.",
   alternates: { canonical: BASE },

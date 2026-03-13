@@ -27,24 +27,24 @@ const jakarta = Plus_Jakarta_Sans({
   display: "swap",
 });
 
-const BASE = process.env.NEXT_PUBLIC_APP_URL || "https://packetally.com";
+const BASE = process.env.NEXT_PUBLIC_APP_URL || "https://whosmetric.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE),
   title: {
-    default: "Packetally — Domain Intelligence Platform",
-    template: "%s | Packetally",
+    default: "WhosMetric — Domain Intelligence Platform",
+    template: "%s | WhosMetric",
   },
   description:
     "Discover who owns any domain, check availability, explore domain portfolios, and find expiring domains. Free domain intelligence platform.",
   keywords: ["domain lookup", "whois", "rdap", "domain ownership", "domain intelligence", "expiring domains"],
   openGraph: {
     type: "website",
-    siteName: "Packetally",
+    siteName: "WhosMetric",
     locale: "en_US",
     url: BASE,
   },
-  twitter: { card: "summary_large_image", site: "@packetally" },
+  twitter: { card: "summary_large_image", site: "@whosmetric" },
   icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
   robots: { index: true, follow: true },
 };
@@ -105,7 +105,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             {/* Logo */}
             <Link
               href="/"
-              aria-label="Packetally — Home"
+              aria-label="WhosMetric — Home"
               style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none", flexShrink: 0 }}
             >
               <LogoMark size={28} aria-hidden="true" />
@@ -139,6 +139,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             <nav aria-label="Main navigation" style={{ display: "flex", gap: 4 }}>
               <Link href="/" className="pk-nav-link">Home</Link>
               <Link href="/dropping-today" className="pk-nav-link">Dropping Today</Link>
+              <Link href="/bulk" className="pk-nav-link">Bulk Check</Link>
+              <Link href="/watchlist" className="pk-nav-link">★ Watchlist</Link>
             </nav>
 
             {/* Mini search — hidden on mobile */}
@@ -178,11 +180,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
               <LogoMark size={18} aria-hidden="true" />
               <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, color: "var(--dim)" }}>
-                © 2026 Packetally · Domain Intelligence Platform
+                © 2026 WhosMetric · Domain Intelligence Platform
               </span>
             </div>
             <nav aria-label="Footer navigation" style={{ display: "flex", gap: 20 }}>
-              {([["Home", "/"], ["Dropping Today", "/dropping-today"]] as const).map(([label, href]) => (
+              {([["Home", "/"], ["Dropping Today", "/dropping-today"], ["Bulk Check", "/bulk"], ["Watchlist", "/watchlist"]] as const).map(([label, href]) => (
                 <Link
                   key={label}
                   href={href}
