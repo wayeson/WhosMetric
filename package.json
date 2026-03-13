@@ -14,20 +14,20 @@
     "ci": "npm run type-check && npm run lint && npm run test && npm run build"
   },
   "dependencies": {
-    "next": "14.2.5",
+    "clsx": "^2.1.1",
+    "next": "^16.1.6",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "clsx": "^2.1.1"
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@vitejs/plugin-react": "^4.3.1",
-    "@vitest/coverage-v8": "^2.0.5",
+    "@vitest/coverage-v8": "^4.1.0",
     "eslint": "^8",
-    "eslint-config-next": "14.2.5",
+    "eslint-config-next": "^16.1.6",
     "typescript": "^5",
-    "vitest": "^2.0.5"
+    "vitest": "^4.1.0"
   }
 }
